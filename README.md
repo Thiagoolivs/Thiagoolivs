@@ -19,9 +19,10 @@
 ---
 
 ## 👨‍💻 Sobre mim
-<sub>
+<small>
 Sou estudante de Ciência da Computação, com formação técnica em Desenvolvimento de Sistemas. Tenho foco em lógica, estrutura de dados e desenvolvimento de software, buscando construir soluções bem estruturadas, escaláveis e confiáveis.
-</sub>
+</small>
+
 ---
 
 ## 🚀 Tecnologias
@@ -42,24 +43,26 @@ Sou estudante de Ciência da Computação, com formação técnica em Desenvolvi
 
 ---
 
-## 📊 GitHub Stats
+## 🧩 Projetos em Destaque
 
-<p align="center">
-  <img
-    src="https://github-readme-stats.vercel.app/api?username=Thiagoolivs&show_icons=true&theme=dracula"
-    height="150"
-  />
-  <img
-    src="https://github-readme-stats.vercel.app/api/top-langs/?username=Thiagoolivs&layout=compact&theme=dracula"
-    height="150"
-  />
-</p>
+**Talent Match**  
+Plataforma com uso de IA para conexão entre talentos e oportunidades.  
+_Tecnologias_: Python, Django, IA, integração de APIs  
+🔗 https://github.com/Thiagoolivs/talent-match
 
+---
 
+## 🔍 Interesses Técnicos
+
+- Backend e APIs REST  
+- Estrutura de dados e lógica  
+- Bancos de dados relacionais  
+- Arquitetura de software  
+- Cloud Computing  
 
 ---
 
 ## 📌 Objetivo
-Desenvolver aplicações web eficientes, com código limpo, boas práticas e foco em aprendizado contínuo. 
-
-
+<small>
+Desenvolver aplicações web eficientes, com código limpo, boas práticas e foco em aprendizado contínuo.
+</small>
