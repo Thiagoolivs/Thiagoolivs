@@ -48,7 +48,7 @@ Sou estudante de Ciência da Computação, com formação técnica em Desenvolvi
 **Talent Match**  
 Plataforma com uso de IA para conexão entre talentos e oportunidades.  
 _Tecnologias_: Python, Django, IA, integração de APIs  
-🔗 https://github.com/Thiagoolivs/talent-match
+🔗 https://github.com/Thiagoolivs/talentmatch-ai
 
 ---
 
