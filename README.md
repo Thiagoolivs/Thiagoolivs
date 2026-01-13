@@ -19,8 +19,9 @@
 ---
 
 ## 👨‍💻 Sobre mim
-
+<sub>
 Sou estudante de Ciência da Computação, com formação técnica em Desenvolvimento de Sistemas. Tenho foco em lógica, estrutura de dados e desenvolvimento de software, buscando construir soluções bem estruturadas, escaláveis e confiáveis.
+</sub>
 ---
 
 ## 🚀 Tecnologias
@@ -45,19 +46,20 @@ Sou estudante de Ciência da Computação, com formação técnica em Desenvolvi
 
 <p align="center">
   <img
-    src="https://github-readme-stats.vercel.app/api?username=thiagoolivs&show_icons=true&theme=dracula"
+    src="https://github-readme-stats.vercel.app/api?username=Thiagoolivs&show_icons=true&theme=dracula"
     height="150"
   />
   <img
-    src="https://github-readme-stats.vercel.app/api/top-langs/?username=thiagoolivs&layout=compact&theme=dracula"
+    src="https://github-readme-stats.vercel.app/api/top-langs/?username=Thiagoolivs&layout=compact&theme=dracula"
     height="150"
   />
 </p>
 
 
+
 ---
 
 ## 📌 Objetivo
-Desenvolver aplicações web eficientes, com código limpo, boas práticas e foco em aprendizado contínuo.
+Desenvolver aplicações web eficientes, com código limpo, boas práticas e foco em aprendizado contínuo. 
 
 
