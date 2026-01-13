@@ -1,7 +1,7 @@
 <h1 align="center">Thiago Coelho</h1>
 
 <p align="center">
-  Desenvolvedor Web • Estudante de Ciência da Computação • Brasil 🇧🇷
+  Software Developer • Estudante de Ciência da Computação • Brasil 🇧🇷
 </p>
 
 <p align="center">
@@ -44,15 +44,16 @@ Sou estudante de Ciência da Computação, com formação técnica em Desenvolvi
 ## 📊 GitHub Stats
 
 <p align="center">
-  <img 
-    src="https://github-readme-stats.vercel.app/api?username=thiagoolivs&show_icons=true&theme=dracula&hide_border=true" 
+  <img
+    src="https://github-readme-stats.vercel.app/api?username=thiagoolivs&show_icons=true&theme=dracula"
     height="150"
   />
-  <img 
-    src="https://github-readme-stats.vercel.app/api/top-langs/?username=thiagoolivs&layout=compact&theme=dracula&hide_border=true" 
+  <img
+    src="https://github-readme-stats.vercel.app/api/top-langs/?username=thiagoolivs&layout=compact&theme=dracula"
     height="150"
   />
 </p>
+
 
 ---
 
