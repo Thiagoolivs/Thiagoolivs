@@ -49,6 +49,14 @@ Sou estudante de Ciência da Computação, com formação técnica em Desenvolvi
 Plataforma com uso de IA para conexão entre talentos e oportunidades.  
 _Tecnologias_: Python, Django, IA, integração de APIs  
 🔗 https://github.com/Thiagoolivs/talentmatch-ai
+🔗 https://talentmatch-ai-production-cb2b.up.railway.app/
+
+**Pesquisa AI**  
+Ferramenta para análise de dados, com uso de IA pra insights e gráficos interativos.
+_Tecnologias_: Python, Django, IA, Chart.js, integração de APIs  
+🔗 https://github.com/Thiagoolivs/Pesquisa-AI
+🔗 https://pesquisa-ai-production.up.railway.app/
+
 
 ---
 
