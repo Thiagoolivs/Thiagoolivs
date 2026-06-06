@@ -2,7 +2,7 @@
 
 <br>
 
-<img src="https://readme-typing-svg.demolab.com?font=Space+Grotesk&weight=700&size=52&duration=1&pause=99999&color=F5F5F7&center=true&vCenter=true&repeat=false&width=700&height=80&lines=Thiago+Coelho" alt="Thiago Coelho" />
+<img src="https://readme-typing-svg.demolab.com?hfont=Space+Grotesk&weight=700&size=52&duration=1&pause=99999&color=F5F5F7&center=true&vCenter=true&repeat=false&width=700&height=80&lines=Thiago+Coelho" alt="Thiago Coelho" />
 
 <br>
 
@@ -138,13 +138,11 @@ Plataforma de análise de dados com geração de insights e visualizações inte
 
 <div align="center">
 
-<img height="155" src="https://github-readme-stats.vercel.app/api?username=Thiagoolivs&show_icons=true&hide_border=true&bg_color=0e0e10&title_color=4F8EF7&icon_color=4F8EF7&text_color=888899&ring_color=4F8EF7&include_all_commits=true&count_private=true" />
+<img height="155" src="https://github-readme-stats-sigma-five.vercel.app/api?username=Thiagoolivs&show_icons=true&hide_border=true&bg_color=0e0e10&title_color=4F8EF7&icon_color=4F8EF7&text_color=888899&ring_color=4F8EF7&include_all_commits=true&count_private=true" />
 &nbsp;
-<img height="155" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Thiagoolivs&layout=compact&hide_border=true&bg_color=0e0e10&title_color=4F8EF7&text_color=888899&langs_count=6" />
+<img height="155" src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=Thiagoolivs&layout=compact&hide_border=true&bg_color=0e0e10&title_color=4F8EF7&text_color=888899&langs_count=6" />
 
 <br><br>
-
-<img src="https://streak-stats.demolab.com?user=Thiagoolivs&hide_border=true&background=0e0e10&stroke=0e0e10&ring=4F8EF7&fire=F5A623&currStreakLabel=4F8EF7&sideLabels=888899&dates=3e3e50&sideNums=e2e2e6&currStreakNum=e2e2e6" />
 
 <br><br>
 
