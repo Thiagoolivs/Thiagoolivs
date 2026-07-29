@@ -156,3 +156,46 @@ ACHIEVEMENTS = [
      "desc": "Vocês dois concluírem o mesmo dia (dia perfeito em conjunto).",
      "metric": "casal", "target": 1},
 ]
+
+# --- Status de humor -------------------------------------------------------
+MOODS = [
+    {"key": "otimo", "emoji": "😄", "label": "Ótimo"},
+    {"key": "bem", "emoji": "🙂", "label": "Bem"},
+    {"key": "neutro", "emoji": "😐", "label": "Neutro"},
+    {"key": "baixo", "emoji": "😕", "label": "Baixo"},
+    {"key": "dificil", "emoji": "😫", "label": "Difícil"},
+]
+
+# --- Mensagem do dia (motivacional, determinística por data) ---------------
+MOTD_POOL = [
+    "Constância vence intensidade — um passo hoje vale mais que dez amanhã.",
+    "Você não precisa ser perfeito, só precisa não desistir.",
+    "Disciplina é lembrar do que você quer de verdade.",
+    "Pequenos hábitos, grandes mudanças. Comece agora.",
+    "Foco no progresso, não na perfeição.",
+    "Grandes conquistas nascem de dias comuns bem vividos.",
+    "Cuide do hoje; o amanhã agradece.",
+    "Evoluir juntos é mais leve — puxa seu par pra cima.",
+    "A vitória de hoje é ter tentado de novo.",
+    "Regue todo dia: é assim que as coisas crescem.",
+    "Você é a soma dos seus pequenos hábitos.",
+    "Não conte os dias — faça os dias contarem.",
+    "A motivação te inicia; o hábito te mantém.",
+    "Respira, agradece e segue. Um dia de cada vez.",
+    "Seja 1% melhor que ontem.",
+    "O segundo melhor momento para começar é agora.",
+    "Gratidão transforma o que temos em suficiente.",
+    "Sua sequência é a prova de que você é capaz.",
+    "Força e constância: o resto é consequência.",
+    "Feito é melhor que perfeito. Bora fazer.",
+]
+
+# --- Incentivos genéricos (usados quando não há nudge contextual) ----------
+ENCOURAGEMENTS = [
+    "Bora! Cada hábito conta. 💪",
+    "Tá quase — não deixa pra amanhã. 🔥",
+    "Orgulho de você por continuar. 👏",
+    "Respira e faz o próximo. Um de cada vez. 🌱",
+    "Hoje é dia de virar o jogo. 😏",
+    "Seu eu do futuro agradece. ✨",
+]

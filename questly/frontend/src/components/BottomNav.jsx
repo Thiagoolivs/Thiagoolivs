@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 
 const items = [
   { to: '/', emoji: '🏠', label: 'Início' },
+  { to: '/chat', emoji: '💬', label: 'Chat' },
   { to: '/historico', emoji: '📅', label: 'Histórico' },
   { to: '/conquistas', emoji: '🏅', label: 'Conquistas' },
   { to: '/perfil', emoji: '👤', label: 'Perfil' },

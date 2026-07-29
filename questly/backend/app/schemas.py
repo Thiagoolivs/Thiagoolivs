@@ -10,6 +10,23 @@ class ToggleRequest(BaseModel):
     habit_key: Optional[str] = None
 
 
+class MoodRequest(BaseModel):
+    date: str
+    mood: Optional[str] = None  # None limpa o humor do dia
+
+
+class ProofRequest(BaseModel):
+    date: str
+    type: Literal["daily", "surprise"]
+    image: Optional[str] = None  # data URL (base64); None remove a comprovação
+
+
+class MessageCreate(BaseModel):
+    player_id: int
+    text: str = ""
+    image: Optional[str] = None  # data URL (base64), anexo opcional
+
+
 class PlayerUpdate(BaseModel):
     name: Optional[str] = None
     avatar: Optional[str] = None

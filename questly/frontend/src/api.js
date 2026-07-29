@@ -25,8 +25,12 @@ export const api = {
   updatePlayer: (id, body) => req(`/api/players/${id}`, { method: 'PUT', body: JSON.stringify(body) }),
   day: (id, day) => req(`/api/day/${id}${qs(day)}`),
   toggle: (id, body) => req(`/api/day/${id}/toggle`, { method: 'POST', body: JSON.stringify(body) }),
+  setMood: (id, body) => req(`/api/day/${id}/mood`, { method: 'POST', body: JSON.stringify(body) }),
+  setProof: (id, body) => req(`/api/day/${id}/proof`, { method: 'POST', body: JSON.stringify(body) }),
   history: (id) => req(`/api/history/${id}`),
   achievements: (id) => req(`/api/achievements/${id}`),
   ranking: () => req('/api/ranking'),
   challengesToday: (day) => req(`/api/challenges/today${qs(day)}`),
+  messages: (afterId = 0) => req(`/api/messages${afterId ? `?after_id=${afterId}` : ''}`),
+  sendMessage: (body) => req('/api/messages', { method: 'POST', body: JSON.stringify(body) }),
 }

@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { useApp } from '../store.jsx'
 import { api } from '../api.js'
+import { pickImage, fileToCompressedDataURL } from '../utils/image.js'
 import PlayerSwitch from '../components/PlayerSwitch.jsx'
 import ProgressRing from '../components/ProgressRing.jsx'
 
 export default function Home() {
   const { state, me, playerId, refresh, loading, error } = useApp()
   const [busy, setBusy] = useState(false)
+  const [zoom, setZoom] = useState(null)
 
   if (loading) return <div className="screen center muted">Carregando…</div>
   if (error)
@@ -21,49 +23,92 @@ export default function Home() {
   if (!state || !me) return <div className="screen center muted">Sem dados.</div>
 
   const today = me.today
+  if (!today)
+    return (
+      <div className="screen center">
+        <p className="brand">🏁 Desafio concluído!</p>
+        <p className="muted small">Parabéns pela jornada. Ajuste a duração em Config para continuar.</p>
+      </div>
+    )
+
   const daily = today.daily
   const surprise = today.surprise
+  const moodEmoji = (key) => state.moods.find((m) => m.key === key)?.emoji
 
-  async function toggle(body) {
+  async function run(fn) {
     if (busy) return
     setBusy(true)
     try {
-      await api.toggle(playerId, { date: state.date, ...body })
+      await fn()
       await refresh()
     } catch (e) {
-      alert('Erro ao salvar: ' + e.message)
+      alert('Erro: ' + e.message)
     } finally {
       setBusy(false)
     }
   }
 
-  const leader = state.leaderboard[0]
+  const toggle = (body) => run(() => api.toggle(playerId, { date: state.date, ...body }))
+  const setMood = (key) =>
+    run(() => api.setMood(playerId, { date: state.date, mood: today.mood === key ? null : key }))
+  const removeProof = (type) => run(() => api.setProof(playerId, { date: state.date, type, image: null }))
+  async function attachProof(type) {
+    const f = await pickImage()
+    if (!f) return
+    const image = await fileToCompressedDataURL(f)
+    await run(() => api.setProof(playerId, { date: state.date, type, image }))
+  }
+
   const someoneLeads =
     state.leaderboard.length > 1 &&
     state.leaderboard[0].stats.total > state.leaderboard[1].stats.total
+
+  const Proof = ({ type, done, proof }) =>
+    !done ? null : (
+      <div className="proof">
+        {proof ? (
+          <>
+            <img className="proof-thumb" src={proof} alt="comprovação" onClick={() => setZoom(proof)} />
+            <span className="muted xsmall">Comprovação ✓</span>
+            <button className="link-btn" disabled={busy} onClick={() => attachProof(type)}>trocar</button>
+            <button className="link-btn danger" disabled={busy} onClick={() => removeProof(type)}>remover</button>
+          </>
+        ) : (
+          <button className="btn ghost small-btn" disabled={busy} onClick={() => attachProof(type)}>
+            📷 Anexar comprovação
+          </button>
+        )}
+      </div>
+    )
 
   return (
     <div className="screen">
       <header className="topbar">
         <div>
-          <div className="brand">
-            <span className="brand-mark">🎯</span> Questly
-          </div>
+          <div className="brand"><span className="brand-mark">🎯</span> Questly</div>
           <div className="muted small">
             Dia {state.day_number} de {state.duration_days} ·{' '}
             {new Date(state.date + 'T00:00').toLocaleDateString('pt-BR', {
-              weekday: 'long',
-              day: '2-digit',
-              month: 'short',
+              weekday: 'long', day: '2-digit', month: 'short',
             })}
           </div>
         </div>
-        <div className="streak-chip" title="Sequência atual">
-          🔥 {me.stats.streak}
-        </div>
+        <div className="streak-chip" title="Sequência atual">🔥 {me.stats.streak}</div>
       </header>
 
+      {/* Mensagem do dia */}
+      <section className="card motd">
+        <div className="motd-icon">✨</div>
+        <div>
+          <div className="muted xsmall">Mensagem do dia</div>
+          <div className="motd-text">{state.motd}</div>
+        </div>
+      </section>
+
       <PlayerSwitch />
+
+      {/* Incentivo / lembrete */}
+      {me.nudge && <div className="nudge">{me.nudge.emoji} {me.nudge.text}</div>}
 
       {/* Ranking */}
       <section className="card leaderboard">
@@ -73,12 +118,11 @@ export default function Home() {
             <div className="rank-pos">{i === 0 && someoneLeads ? '👑' : i + 1}</div>
             <div className="rank-avatar">{p.avatar}</div>
             <div className="rank-main">
-              <div className="rank-name">{p.name}</div>
+              <div className="rank-name">
+                {p.name} {p.today?.mood && <span className="rank-mood">{moodEmoji(p.today.mood)}</span>}
+              </div>
               <div className="bar">
-                <div
-                  className="bar-fill"
-                  style={{ width: `${p.stats.possible ? (p.stats.total / p.stats.possible) * 100 : 0}%` }}
-                />
+                <div className="bar-fill" style={{ width: `${p.stats.possible ? (p.stats.total / p.stats.possible) * 100 : 0}%` }} />
               </div>
             </div>
             <div className="rank-meta">
@@ -90,6 +134,24 @@ export default function Home() {
         {state.casal_perfect_days > 0 && (
           <div className="couple-note">💞 Casal Inabalável: {state.casal_perfect_days} dia(s) perfeito(s) juntos!</div>
         )}
+      </section>
+
+      {/* Humor */}
+      <section className="card">
+        <div className="card-title">Como você está hoje?</div>
+        <div className="mood-row">
+          {state.moods.map((m) => (
+            <button
+              key={m.key}
+              className={'mood ' + (today.mood === m.key ? 'active' : '')}
+              disabled={busy}
+              onClick={() => setMood(m.key)}
+            >
+              <span className="mood-emoji">{m.emoji}</span>
+              <span className="mood-label">{m.label}</span>
+            </button>
+          ))}
+        </div>
       </section>
 
       {/* Progresso de hoje */}
@@ -122,6 +184,7 @@ export default function Home() {
         >
           {today.daily_done ? '✓ Concluído' : 'Marcar como concluído'}
         </button>
+        <Proof type="daily" done={today.daily_done} proof={today.daily_proof} />
       </section>
 
       {/* Surpresa */}
@@ -139,6 +202,7 @@ export default function Home() {
           >
             {today.surprise_done ? '✓ Encarada!' : 'Aceitar desafio'}
           </button>
+          <Proof type="surprise" done={today.surprise_done} proof={today.surprise_proof} />
         </section>
       )}
 
@@ -166,6 +230,12 @@ export default function Home() {
         </div>
         {today.perfect && <div className="perfect-banner">⭐ Dia perfeito! +{today.bonus} de bônus</div>}
       </section>
+
+      {zoom && (
+        <div className="lightbox" onClick={() => setZoom(null)}>
+          <img src={zoom} alt="comprovação" />
+        </div>
+      )}
     </div>
   )
 }

@@ -11,6 +11,7 @@ from sqlalchemy import (
     Integer,
     JSON,
     String,
+    Text,
     UniqueConstraint,
 )
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -36,7 +37,7 @@ class Player(Base):
 
 
 class DayEntry(Base):
-    """O registro de um dia para um jogador (hábitos + desafios marcados)."""
+    """O registro de um dia para um jogador (hábitos + desafios + humor + provas)."""
 
     __tablename__ = "day_entries"
     __table_args__ = (UniqueConstraint("player_id", "date", name="uq_player_date"),)
@@ -47,6 +48,10 @@ class DayEntry(Base):
     habits_done: Mapped[list] = mapped_column(JSON, default=list)
     daily_done: Mapped[bool] = mapped_column(Boolean, default=False)
     surprise_done: Mapped[bool] = mapped_column(Boolean, default=False)
+    mood: Mapped[Optional[str]] = mapped_column(String(16), nullable=True)
+    # Comprovações (imagens em data URL base64).
+    daily_proof: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    surprise_proof: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
 
     player: Mapped["Player"] = relationship(back_populates="days")
 
@@ -68,3 +73,15 @@ class Settings(Base):
     spiritual_enabled: Mapped[bool] = mapped_column(Boolean, default=True)
     surprise_frequency: Mapped[float] = mapped_column(Float, default=0.34)
     fixed_habits: Mapped[list] = mapped_column(JSON, default=list)
+
+
+class Message(Base):
+    """Mensagem do chat entre os participantes (texto + anexo opcional)."""
+
+    __tablename__ = "messages"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    player_id: Mapped[int] = mapped_column(ForeignKey("players.id"))
+    text: Mapped[str] = mapped_column(Text, default="")
+    image: Mapped[Optional[str]] = mapped_column(Text, nullable=True)  # data URL base64
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)

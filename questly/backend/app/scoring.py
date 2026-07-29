@@ -19,6 +19,7 @@ from .data import (
     CATEGORY_ORDER,
     CHALLENGE_POOLS,
     DEFAULT_HABITS,
+    MOTD_POOL,
     SURPRISE_POOL,
 )
 
@@ -64,6 +65,11 @@ def surprise_challenge(settings, d: date):
         return None
     text = SURPRISE_POOL[_seed(d, "surprise-pick") % len(SURPRISE_POOL)]
     return {"emoji": "🔥", "text": text}
+
+
+def motd(d: date) -> str:
+    """Mensagem do dia (determinística por data)."""
+    return MOTD_POOL[_seed(d, "motd") % len(MOTD_POOL)]
 
 
 def _fixed_habits(settings) -> list:
@@ -119,12 +125,42 @@ def compute_day(settings, entry, d: date) -> dict:
         "n_done": n_done,
         "daily": daily,
         "daily_done": daily_done,
+        "daily_proof": entry.daily_proof if entry else None,
         "surprise": surprise,
         "surprise_present": surprise_present,
         "surprise_done": surprise_done,
+        "surprise_proof": entry.surprise_proof if entry else None,
+        "mood": entry.mood if entry else None,
         "completed": all_habits and daily_done,  # conta para a sequência
         "perfect": everything,                    # dia perfeito (ganhou o bônus)
     }
+
+
+def nudge(today_cd: dict, my_total: int, partner_total=None, partner_name=None) -> dict:
+    """Mensagem de incentivo/lembrete contextual para o dia de hoje."""
+    if today_cd["perfect"]:
+        base = "Dia perfeito! Você fechou tudo hoje. Orgulho! ⭐"
+    else:
+        parts = []
+        pend = today_cd["n_habits"] - today_cd["n_done"]
+        if pend > 0:
+            parts.append(f"{pend} hábito(s)")
+        if not today_cd["daily_done"]:
+            parts.append("o desafio do dia")
+        if today_cd["surprise_present"] and not today_cd["surprise_done"]:
+            parts.append("a surpresa 🔥")
+        base = (
+            "Faltam " + " e ".join(parts) + " pra fechar o dia. Bora! 💪"
+            if parts else "Tudo em ordem por hoje. 👏"
+        )
+
+    if partner_total is not None:
+        if partner_total > my_total:
+            base += f" {partner_name or 'Seu par'} tá {partner_total - my_total} pts na frente 👀"
+        elif my_total > partner_total:
+            base += " Você tá liderando! 👑"
+
+    return {"emoji": "📣", "text": base}
 
 
 def _challenge_window(settings, today: date):
